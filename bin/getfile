@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# this is a placeholder for the commandline program which will retrieve 
+# the student's source file(s) and install them into tmp/aruba for execution
+
+# this particular getfile only creates the bin folder and copies no files
+# Lab 9 executes the student's code in place in their ~/public_html
+
+echo $(pwd)
+echo "Getfile called!"
+rm -f ../bin/*
+mkdir -p ../bin

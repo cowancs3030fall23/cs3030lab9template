@@ -1,7 +1,8 @@
 Feature: Files must be named "cal.html" and "cal.cgi" and be marked as executable
 	Scenario: cal.html and cal.cgi must be found
-		Then a file named "~/public_html/cal.html" should exist
-		Then a file named "~/public_html/cal.cgi" should exist
+		When I run `getfile`
+		Then a file named "../../cal.html" should exist
+		Then a file named "../../cal.cgi" should exist
 		Then 5 points are awarded
 
 	Scenario: cal.html and cal.cgi must be executable

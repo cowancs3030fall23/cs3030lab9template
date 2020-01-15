@@ -3,23 +3,8 @@
 # this is a placeholder for the commandline program which will retrieve 
 # the student's source file(s) and install them into tmp/aruba for execution
 
-# this particular getfile creates the bin folder, copies the two files to tmp/bin
-# and to ~/public_html.  The tests executes the student's code from  ~/public_html
-
 echo $(pwd)
 echo "Getfile called!"
-rm -f ../bin/*
+rm -f ../../bin/filemaker.ps1
 mkdir -p ../bin
-
-# get rid of any artifacts from previous cucumber runs
-rm ~/public_html/cal.cgi ~/public_html/cal.html
-
-cp ../../cal.cgi ~/public_html
-cp ../../cal.cgi ../bin
-chmod 755 ~/public_html/cal.cgi 
-chmod 755 ../bin/cal.cgi 
-
-cp ../../cal.html ~/public_html
-cp ../../cal.html ../bin
-chmod 755 ~/public_html/cal.html 
-chmod 755 ../bin/cal.html 
+cp --preserve=mode ../../filemaker.ps1 ../../bin/

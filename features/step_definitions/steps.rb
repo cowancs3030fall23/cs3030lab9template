@@ -4,64 +4,6 @@ Given /^a random small CSV file "(.*)"$/ do |csv|
 	#puts "Students:#{@csv.studentCount}"
 end
 
-Given /^I run local `(.*)`$/ do |cmd|
-	cmd2 = cmd.gsub(/~/,Dir.home)
-	#puts "'#{cmd}' is now '#{cmd2}'"
-	step "I run `#{cmd2}`"
-end
-	
-Given /^I run user `(.*)`$/ do |cmd|
-	#userid = `whoami`
-	userid = ENV['USER']
-	cmd2 = cmd.gsub(/~/,'~' + userid)
-	#puts "'#{cmd}' is now '#{cmd2}'"
-	step "I run `#{cmd2}`"
-end
-
-Given /^I run user `(.*)` with random month and year$/ do |cmd|
-	r = Random.new
-	@randomMonth = r.rand(1..12)
-	@randomYear = r.rand(1..9999)
-	@months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-	@randomMonthName = @months[r.rand(0..11)]
-	userid = ENV['USER']
-	cmd2 = cmd.gsub(/~/,'~' + userid)
-	cmd3 = "#{cmd2}#{@randomMonthName}+#{@randomYear}"
-	#puts "'#{cmd}' is now '#{cmd3}'"
-	step "I run `#{cmd3}`"
-end
-
-Given /^I run user `(.*)` with random year$/ do |cmd|
-	r = Random.new
-	@randomYear = r.rand(1..9999)
-	userid = ENV['USER']
-	cmd2 = cmd.gsub(/~/,'~' + userid)
-	cmd3 = "#{cmd2}#{@randomYear}"
-	#puts "'#{cmd}' is now '#{cmd3}'"
-	step "I run `#{cmd3}`"
-end
-
-Given /^the output should contain the cal default output$/ do
-	out = `cal -h`.chomp.chomp
-	out2 = out.gsub(/[ ]*$/,'')
-	puts "cal default output:\n#{out2}"
-	step "the output should contain \"#{out2}\""
-end
-
-Given /^the output should contain the cal output with random month and year$/ do
-	out = `cal -h #{@randomMonthName} #{@randomYear}`.chomp.chomp
-	out2 = out.gsub(/[ ]*$/,'')
-	puts "cal output of random month and year:\n#{out2}"
-	step "the output should contain \"#{out2}\""
-end
-
-Given /^the output should contain the cal output with random year$/ do
-	out = `cal -h #{@randomYear}`.chomp.chomp
-	out2 = out.gsub(/[ ]*$/,'')
-	puts "cal output with random year:\n#{out2}"
-	step "the output should contain \"#{out2}\""
-end
-
 Given /^the classes table in "(.*)" should be defined correctly$/ do |db|
 	dbPath = File.join("tmp","aruba",db)
 	create = `sqlite3 #{dbPath} 'select count(*) from classes'`

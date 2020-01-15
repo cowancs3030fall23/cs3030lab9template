@@ -1,16 +1,9 @@
-Feature: Files must be named "cal.html" and "cal.cgi" and be marked as executable
-	Scenario: cal.html and cal.cgi must be found
-		When I run `getfile`
-		Then a file named "../../cal.html" should exist
-		Then a file named "../../cal.cgi" should exist
+Feature: Script must be named "filemaker.ps1", present and be marked as executable
+	Scenario: filemaker must be found
+		When I run `getfile` 
+		Then a file named "../../bin/filemaker.ps1" should exist
 		Then 5 points are awarded
 
-	Scenario: cal.html and cal.cgi must be executable
-		#Then the mode of filesystem object "~/public_html/cal.html" should match "0755"
-		Given the file named "~/public_html/cal.html" should have permissions "0755"
-		And the file named "~/public_html/cal.cgi" should have permissions "0755"
+	Scenario: filemaker must be executable
+		When I run `filemaker.ps1`
 		Then 5 points are awarded
-
-	Scenario: cal.cgi must not contain YOUR NAME GOES HERE
-		Given the file "~/public_html/cal.cgi" should not contain "YOUR NAME GOES HERE"
-		Then 15 points are awarded

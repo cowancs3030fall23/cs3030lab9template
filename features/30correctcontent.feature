@@ -53,6 +53,7 @@ Feature: Output file contains correct information
 			three
 			four
 			five
+
 			"""
 		When I run `filemaker.ps1 filewordcmd filewordoutput 1`
 		Then the file "filewordoutput" should match /one|two|three|four|five/
@@ -72,6 +73,7 @@ Feature: Output file contains correct information
 			faith
 			is
 			disturbing
+
 			"""
 		When I run `filemaker.ps1 randomfilewordcmd randomfilewordoutput 5`
 		Then the file "randomfilewordoutput" should not match /(\w+)\n\1\n\1\n\1\n\1\n/
@@ -104,6 +106,7 @@ Feature: Output file contains correct information
 			is
 			a
 			test
+
 			"""
 		Given a file named "referfilewordcmd" with:
 			"""

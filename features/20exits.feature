@@ -7,7 +7,7 @@ Feature: Creates an output file according to the commandfile and record count
 		Then 10 points are awarded
 
 	Scenario: If input command file cannot be opened, "Error" msg and exits with rc=1
-		Given an empty file named "cannotopen.txt" with mode "0000"
+		Given an empty file named "cannotopen.csv" with mode "0000"
 		When I run `filemaker.ps1 cannotopen.csv unimportant.output 3`
 		And the output should match /[Ee]rror/
 		Then the exit status should be 1

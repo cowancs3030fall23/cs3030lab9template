@@ -4,7 +4,7 @@
 # the student's source file(s) and install them into tmp/aruba for execution
 
 echo $(pwd)
-echo "Getfile called!"
+#echo "Getfile called!"
 rm -f ../../bin/filemaker.ps1
 mkdir -p ../bin
 cp --preserve=mode ../../filemaker.ps1 ../../bin/

@@ -1,7 +1,10 @@
+#@announce-stderr
+
 Feature: Creates an output file according to the commandfile and record count
 
 	Scenario: With parameters missing, "Usage:" msg and exits with rc=1
 		When I run `filemaker.ps1`
+        And OUTPUT is printed
 		And the output should match /[Uu]sage:/
 		Then the exit status should be 1
 		Then 10 points are awarded
@@ -9,6 +12,7 @@ Feature: Creates an output file according to the commandfile and record count
 	Scenario: If input command file cannot be opened, "Error" msg and exits with rc=1
 		Given an empty file named "cannotopen.csv" with mode "0000"
 		When I run `filemaker.ps1 cannotopen.csv unimportant.output 3`
+        And OUTPUT is printed
 		And the output should match /[Ee]rror/
 		Then the exit status should be 1
 		Then 10 points are awarded
@@ -17,6 +21,7 @@ Feature: Creates an output file according to the commandfile and record count
 		Given an empty file named "emptyinputfile"
 		Given an empty file named "cannotoverwrite" with mode "0000"
 		When I run `filemaker.ps1 emptyinputfile cannotoverwrite 3`
+        And OUTPUT is printed
 		And the output should match /[Ee]rror/
 		Then the exit status should be 1
 		Then 10 points are awarded
@@ -24,6 +29,7 @@ Feature: Creates an output file according to the commandfile and record count
 	Scenario: Returns rc=1 and "Error" message if count is not a number
 		Given an empty file named "emptyinputfile"
 		When I run `filemaker.ps1 emptyinputfile unimportant.output notanumber`
+        And OUTPUT is printed
 		Then the exit status should be 1
 		And the output should match /[Ee]rror/
 		Then 10 points are awarded
@@ -34,6 +40,7 @@ Feature: Creates an output file according to the commandfile and record count
 			STRING "hello, world!\n"
 			"""
 		When I run `filemaker.ps1 smallcmd smalloutput 3`
+        And OUTPUT is printed
 		Then the file "smalloutput" should contain:
 			"""
 			hello, world!

@@ -1,3 +1,5 @@
+#@announce-output
+
 Feature: Script must be named "filemaker.ps1", present and be marked as executable
 	Scenario: filemaker must be found
 		When I run `getfile` 
@@ -6,4 +8,5 @@ Feature: Script must be named "filemaker.ps1", present and be marked as executab
 
 	Scenario: filemaker must be executable
 		When I run `filemaker.ps1`
+        And OUTPUT is printed
 		Then 5 points are awarded

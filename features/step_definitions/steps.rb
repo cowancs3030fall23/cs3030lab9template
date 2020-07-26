@@ -1,3 +1,22 @@
+Given /^OUTPUT is printed/ do
+    stdoutOutput = all_commands.map { |c| c.stdout }.join("\n").strip
+    if stdoutOutput != ""
+        puts "STDOUT>>>"
+        puts stdoutOutput
+        puts "<<<STDOUT"
+    else
+        puts "STDOUT is EMPTY"
+    end
+    stderrOutput = all_commands.map { |c| c.stderr }.join("\n").strip
+    if stderrOutput != ""
+        puts "STDERR>>>"
+        puts stderrOutput
+        puts "<<<STDERR"
+    else
+        puts "STDERR is EMPTY"
+    end
+end
+
 Given /^a random small CSV file "(.*)"$/ do |csv|
 	#puts "Building #{csv}"
 	@csv = RandomCSV.new(csv, :small)

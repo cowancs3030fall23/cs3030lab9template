@@ -44,7 +44,6 @@ Feature: Output file contains correct information
         And OUTPUT is printed
 		Then the file "anotherstringoutput" should contain:
 			"""
-			# A single string
 			yet another string
 			"""
 		Then 40 points are awarded

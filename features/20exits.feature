@@ -37,7 +37,7 @@ Feature: Creates an output file according to the commandfile and record count
 	Scenario: Returns rc=0 on successful run
 		Given a file named "smallcmd" with:
 			"""
-            # A single string
+			# A single string
 			STRING "hello, world!\n"
 			"""
 		When I run `filemaker.ps1 smallcmd smalloutput 3`

@@ -5,6 +5,7 @@ Feature: Output file contains correct information
 	Scenario: Script outputs the correct number of records
 		Given a file named "smallcmd" with:
 			"""
+            # A single string
 			STRING "testing 1 2 3\n"
 			"""
 		When I run `filemaker.ps1 smallcmd smalloutput 3`
@@ -36,12 +37,14 @@ Feature: Output file contains correct information
 	Scenario: Script supports the STRING command
 		Given a file named "anotherstringcmd" with:
 			"""
+            # A single string
 			STRING "yet another string\n"
 			"""
 		When I run `filemaker.ps1 anotherstringcmd anotherstringoutput 3`
         And OUTPUT is printed
 		Then the file "anotherstringoutput" should contain:
 			"""
+            # A single string
 			yet another string
 			"""
 		Then 40 points are awarded
@@ -49,6 +52,7 @@ Feature: Output file contains correct information
 	Scenario: Script supports the FILEWORD command
 		Given a file named "filewordcmd" with:
 			"""
+            # A file word command
 			FILEWORD filelabel "words"
 			"""
 		Given a file named "words" with:

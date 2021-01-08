@@ -1,26 +1,26 @@
 Given /^OUTPUT is printed/ do
     stdoutOutput = all_commands.map { |c| c.stdout }.join("\n").strip
     if stdoutOutput != ""
-        puts "STDOUT>>>"
-        puts stdoutOutput
-        puts "<<<STDOUT"
+        log "STDOUT>>>"
+        log stdoutOutput
+        log "<<<STDOUT"
     else
-        puts "STDOUT is EMPTY"
+        log "STDOUT is EMPTY"
     end
     stderrOutput = all_commands.map { |c| c.stderr }.join("\n").strip
     if stderrOutput != ""
-        puts "STDERR>>>"
-        puts stderrOutput
-        puts "<<<STDERR"
+        log "STDERR>>>"
+        log stderrOutput
+        log "<<<STDERR"
     else
-        puts "STDERR is EMPTY"
+        log "STDERR is EMPTY"
     end
 end
 
 Given /^a random small CSV file "(.*)"$/ do |csv|
-	#puts "Building #{csv}"
+	#log "Building #{csv}"
 	@csv = RandomCSV.new(csv, :small)
-	#puts "Students:#{@csv.studentCount}"
+	#log "Students:#{@csv.studentCount}"
 end
 
 Given /^the classes table in "(.*)" should be defined correctly$/ do |db|
@@ -121,9 +121,9 @@ Given /^the students table data from "(.*)" in "(.*)" should be correct$/ do |cs
 	# remember Ted that when using 'step' you don't prepend the path
 	step "I run `sqlite3 #{dbPath} '#{selectStmt}'`"
 	step "the output should not contain \"Error\""
-	#puts "Output:\n#{all_output}"
+	#log "Output:\n#{all_output}"
 	if all_output != @csv.students.join("")
-		puts "Your student data:\n#{all_output}\n\nExpected student data:\n#{@csv.students.join("")}"
+		log "Your student data:\n#{all_output}\n\nExpected student data:\n#{@csv.students.join("")}"
 		raise "Student data in #{db} not as expected"
 	end
 	
@@ -137,9 +137,9 @@ Given /^the classes table data from "(.*)" in "(.*)" should be correct$/ do |csv
 	# remember Ted that when using 'step' you don't prepend the path
 	step "I run `sqlite3 #{dbPath} '#{selectStmt}'`"
 	step "the output should not contain \"Error\""
-	#puts "Output:\n#{all_output}"
+	#log "Output:\n#{all_output}"
 	if all_output != @csv.classes.sort.join("")
-		puts "Your classes data:\n#{all_output}\n\nExpected student data:\n#{@csv.classes.join("")}"
+		log "Your classes data:\n#{all_output}\n\nExpected student data:\n#{@csv.classes.join("")}"
 		raise "Classes data in #{db} not as expected"
 	end
 	
@@ -147,7 +147,7 @@ Given /^the classes table data from "(.*)" in "(.*)" should be correct$/ do |csv
 end
 	
 Given /^(.*) points are awarded/ do |points|
-	#puts "#{points} points are now awarded!!!"
+	#log "#{points} points are now awarded!!!"
 	$total_points += points.to_i
 end
 
@@ -155,7 +155,7 @@ Given /^timeout is increased by (.*) seconds$/ do |seconds|
 	if @aruba_timeout_seconds  
 		@aruba_timeout_seconds += seconds.to_i
 	else
-		puts "aruba_timeout_seconds is NIL!"
+		log "aruba_timeout_seconds is NIL!"
 	end
 end
 
@@ -163,7 +163,7 @@ Given /^timeout is decreased by (.*) seconds$/ do |seconds|
 	if @aruba_timeout_seconds
 		@aruba_timeout_seconds -= seconds.to_i
 	else
-		puts "aruba_timeout_seconds is NIL!"
+		log "aruba_timeout_seconds is NIL!"
 	end
 end
 

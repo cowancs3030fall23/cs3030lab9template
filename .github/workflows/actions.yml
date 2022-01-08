@@ -10,7 +10,5 @@ jobs:
     runs-on: self-hosted
     steps:
       - uses: actions/checkout@v2
-      - run: set
       - run: cs3030actions
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by me!"
 

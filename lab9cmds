@@ -1,8 +1,8 @@
 # This is the basic commands file for Lab 9
 STRING '"'
-FILEWORD lastname "surnames.txt"
+WORD lastname "surnames.txt"
 STRING ', '
-FILEWORD firstname "firstnames.txt"
+WORD firstname "firstnames.txt"
 STRING '","'
 REFER firstname
 STRING '.'

@@ -48,11 +48,11 @@ Feature: Output file contains correct information
 			"""
 		Then 40 points are awarded
 
-	Scenario: Script supports the FILEWORD command
+	Scenario: Script supports the WORD command
 		Given a file named "filewordcmd" with:
 			"""
 			# A file word command
-			FILEWORD filelabel "words"
+			WORD filelabel "words"
 			"""
 		Given a file named "words" with:
 			"""
@@ -68,10 +68,10 @@ Feature: Output file contains correct information
 		Then the file "filewordoutput" should match /one|two|three|four|five/
 		Then 20 points are awarded
 
-	Scenario: Script supports the FILEWORD command with true randomness
+	Scenario: Script supports the WORD command with true randomness
 		Given a file named "randomfilewordcmd" with:
 			"""
-			FILEWORD filelabel "randomwords"
+			WORD filelabel "randomwords"
 			STRING "\n"
 			"""
 		Given a file named "randomwords" with:
@@ -89,10 +89,10 @@ Feature: Output file contains correct information
 		Then the file "randomfilewordoutput" should not match /(\w+)\n\1\n\1\n\1\n\1\n/
 		Then 20 points are awarded
 
-	Scenario: Script supports the NUMBER command
+	Scenario: Script supports the INTEGER command
 		Given a file named "numbercmd" with:
 			"""
-			NUMBER numlabel 1 1999
+			INTEGER numlabel 1 1999
 			STRING "\n"
 			"""
 		When I run `filemaker.ps1 numbercmd numberoutput 3`
@@ -100,10 +100,10 @@ Feature: Output file contains correct information
 		Then the file "numberoutput" should match /^\d+\n\d+\n\d+/
 		Then 20 points are awarded
 
-	Scenario: Script supports the NUMBER command with true randomness
+	Scenario: Script supports the INTEGER command with true randomness
 		Given a file named "randomnumbercmd" with:
 			"""
-			NUMBER numlabel 1 1999
+			INTEGER numlabel 1 1999
 			STRING "\n"
 			"""
 		When I run `filemaker.ps1 randomnumbercmd randomnumberoutput 5`
@@ -111,7 +111,7 @@ Feature: Output file contains correct information
 		Then the file "randomnumberoutput" should not match /(\d+)\n\1\n\1\n\1\n\1\n/
 		Then 20 points are awarded
 
-	Scenario: Script supports the REFER command to a label on a FILEWORD command
+	Scenario: Script supports the REFER command to a label on a WORD command
 		Given a file named "morewords" with:
 			"""
 			this
@@ -122,7 +122,7 @@ Feature: Output file contains correct information
 			"""
 		Given a file named "referfilewordcmd" with:
 			"""
-			FILEWORD flabel "morewords"
+			WORD flabel "morewords"
 			STRING " and "
 			REFER flabel
 			STRING " and "
@@ -133,10 +133,10 @@ Feature: Output file contains correct information
 		Then the file "referfilewordoutput" should match /^(\w+) and \1 and \1$/
 		Then 30 points are awarded
 
-	Scenario: Script supports the REFER command to a label on a NUMBER command
+	Scenario: Script supports the REFER command to a label on a INTEGER command
 		Given a file named "refernumbercmd" with:
 			"""
-			NUMBER numlabel 1 99999
+			INTEGER numlabel 1 99999
 			STRING " I said "
 			REFER numlabel
 			STRING " I said "
